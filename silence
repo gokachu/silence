@@ -1,0 +1,19 @@
+#!/bin/bash
+
+ERROR_FILE="$HOME/shell/error.log"
+
+COMMAND="$1" 
+PARAMS="${@:2}"
+
+FULL_COMMAND="$COMMAND $PARAMS"
+
+
+$FULL_COMMAND 2>>$HOME/.silence/silence.log 1>/dev/null &
+
+if [ $? = 0 ]; then
+	echo "$FULL_COMMAND running [$!]"
+else
+	echo "Error"
+fi
+
+exit 0
